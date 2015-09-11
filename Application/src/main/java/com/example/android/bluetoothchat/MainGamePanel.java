@@ -21,9 +21,9 @@ public class MainGamePanel extends View{
     private float ballRadius = 30;
     private float ballX = 0;
     private float ballY = yMax;
-    private float ballSpeedX = 5;
+    private float ballSpeedX = 10;
     private float ballSpeedY = 0;
-    private float gravity = 2;
+    private float gravity = 0;
     private RectF ballBounds;
     private Paint paint;
     private int touchStarted;
@@ -80,19 +80,16 @@ public class MainGamePanel extends View{
         }
 
         ballY = ballY + ballSpeedY;
-//            if (ballY + ballRadius > yMax)
-//            {
-//                ballSpeedY = -ballSpeedY;
-//                ballY = yMax - ballRadius;
-//            }
-//            else if (ballY - ballRadius < yMin)
-//            {
-//                ballSpeedY = -ballSpeedY;
-//                ballY = yMin + ballRadius;
-//            }
-
-
-
+        if(ballY == yMax - ballRadius)
+        {
+            gravity = 0;
+            ballSpeedY = 0;
+        }
+        else
+        {
+            gravity = 2;
+        }
+        ballSpeedY = ballSpeedY + gravity;
 
     }
 
@@ -117,7 +114,7 @@ public class MainGamePanel extends View{
             touchStarted=1;
             if(ballY == yMax - ballRadius)
             {
-                ballSpeedY = -10;
+                ballSpeedY = -30;
             }
 
         }
@@ -128,6 +125,5 @@ public class MainGamePanel extends View{
         // tell the system that we handled the event and no further processing is required
         return true;
     }
-
 
 }

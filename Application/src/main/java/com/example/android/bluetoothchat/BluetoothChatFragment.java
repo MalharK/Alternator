@@ -404,4 +404,6 @@ public class BluetoothChatFragment extends Fragment {
         return false;
     }
 
+
+
 }
